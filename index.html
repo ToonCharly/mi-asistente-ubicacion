@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mi Asistente de Ubicación</title>
+<meta name="theme-color" content="#0f766e"><link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="lib/leaflet.css"><link rel="stylesheet" href="style.css">
+</head><body>
+<header><h1>📍 Mi Asistente de Ubicación</h1><div id="estado"><span id="pGeo" class="chip">Ubicación: …</span><span id="pCam" class="chip">Cámara: …</span><span id="red" class="chip"></span></div></header>
+
+<section id="privacidad" class="card" hidden>
+<h2>Privacidad de tus datos</h2>
+<p>Esta app usa tu ubicación y tu cámara <b>solo cuando tú lo pides</b>. Los registros y fotos se guardan <b>únicamente en este dispositivo</b> (IndexedDB); no se envían a ningún servidor. Los mosaicos del mapa se descargan de OpenStreetMap, que puede ver tu dirección IP. Puedes borrar todo en cualquier momento.</p>
+<button id="aceptar" class="primary">Acepto y deseo continuar</button>
+</section>
+
+<main id="app" hidden>
+<section class="card" id="mapa-card"><div id="map" role="application" aria-label="Mapa interactivo"></div></section>
+<div class="col">
+<section class="card"><h2>1. Ubicación</h2>
+<button id="btnGeo" class="primary">Obtener mi ubicación</button>
+<p id="geoInfo" class="info">Aún no se ha obtenido la ubicación.</p></section>
+<section class="card"><h2>2. Fotografía</h2>
+<div class="row"><button id="btnCam">Abrir cámara</button><button id="btnFoto" disabled>Tomar foto</button><button id="btnQuitar" disabled>Descartar</button></div>
+<select id="camSel" hidden aria-label="Elegir cámara"></select><video id="video" playsinline muted hidden></video><img id="preview" alt="Vista previa de la foto" hidden>
+<label class="file">o seleccionar/tomar con el sistema: <input id="fileIn" type="file" accept="image/*" capture="environment"></label>
+<p id="camInfo" class="info"></p></section>
+<section class="card"><h2>3. Guardar registro</h2>
+<input id="nota" type="text" maxlength="120" placeholder="Nota (opcional)" aria-label="Nota">
+<button id="btnGuardar" class="primary" disabled>Guardar registro</button><p id="msg" class="info" role="status"></p></section>
+</div>
+<section class="card wide"><div class="row between"><h2>Registros guardados (<span id="n">0</span>)</h2>
+<div class="row"><button id="btnExp">Exportar JSON</button><button id="btnBorrar" class="danger">Borrar todos mis datos</button></div></div>
+<ul id="lista"></ul></section>
+</main>
+<script src="lib/leaflet.js"></script><script src="app.js"></script>
+</body></html>
